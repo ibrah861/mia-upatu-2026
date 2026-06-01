@@ -19,9 +19,11 @@ return (
 
        <div className="button">
         <Link to="/signup">
-         <button className='button-blue'>
-          <FaUser/>
-          Jiunge Sasa</button></Link>
+          <button className='button-blue'>
+              <FaUser/>
+              Jiunge Sasa
+          </button>
+        </Link>
        
        </div>
       

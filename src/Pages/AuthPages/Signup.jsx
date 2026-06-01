@@ -47,8 +47,6 @@ const reducer = (state, action) => {
 export const Signup = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  console.log(state.email)
-
   // usestate
   const [resOrTex, setResOrTex] = useState(false);
   const [emailExist, setEmailExist] = useState(false);
@@ -71,14 +69,14 @@ export const Signup = () => {
       setProceedPassword (response.data.emailExist)
 
       setResOrTex(response.data.isMessageFromServer);
-      setMessageServer(data.message);
+      setMessageServer(response.data.message);
       setEmailExist(response.data.emailExist);
 
       const remove_Bg_Message = () => {
         setResOrTex(false);
       };
 
-      setTimeout(remove_Bg_Message, 3000);
+      setTimeout(remove_Bg_Message, 7000);
     } catch (error) {
       console.log(error);
     }
@@ -98,7 +96,7 @@ export const Signup = () => {
           {false ? (
             <div>
               {false ? (
-                <p style={{ color: "black" }}>
+                <p style={{ color: "black" }} >
                   Tafadhali andika neno la siri ili kuendelea
                 </p>
               ) : (
@@ -108,11 +106,11 @@ export const Signup = () => {
           ) : (
             <div>
               {resOrTex ? (
-                <p>{messageServer}</p>
+                <p className="message_geServer_box">{messageServer}</p>
               ) : (
                 <p style={{ color: "black" }}>
                   Fungua akaunti kwa kuandika email yako hapo chini
-                  <span className="example-email">ibra200@gmail.com</span>
+                  <span className="example-email">exam573@gmail.com</span>
                 </p>
               )}
             </div>
@@ -140,7 +138,7 @@ export const Signup = () => {
                 <label htmlFor="email">Email : </label>
                 <input
                   type="email"
-                  placeholder="ibra200@gmail.com"
+                  placeholder="exam573@gmail.com"
                   required
                   value={state.email}
                   onChange={(e) => {
@@ -165,10 +163,10 @@ export const Signup = () => {
           </div>
 
           {state.Loading ? null : (
-            <p style={{ color: "black" }}>
+            <p style={{ color: "black",fontSize:"small" }}>
               Sina akaunti.&nbsp;
               <Link to="/signin">
-                <span style={{ color: "blue", textDecoration: "none" }}>
+                <span style={{ color: "blue", textDecoration: "none",  }}>
                   Tengeza akaunti !
                 </span>
               </Link>

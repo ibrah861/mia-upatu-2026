@@ -60,3 +60,15 @@
   align-items: center;
   column-gap: 0.6em;
 }
+
+
+
+/* mobile phone */
+@media screen  and (width < 540px){
+  .discription_head {
+  width: 100%;
+}
+.button a{
+  text-decoration: none;
+}
+}

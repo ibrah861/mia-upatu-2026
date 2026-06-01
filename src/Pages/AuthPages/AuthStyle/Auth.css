@@ -1,0 +1,120 @@
+.card-center {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100dvh;
+    width: 100%;
+
+    background-image: url("../../../assets/background-auth.webp");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+
+    overflow: hidden;
+}
+
+.card-center::before{
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.5); /* opacity layer */
+}
+
+.card-center > *{
+    position: relative;
+    z-index: 1;
+}
+.card-center > section {
+    /* box-shadow: 0px 0px 3px white; */
+    padding: 2em 3em;
+    background-color: white;
+
+    h2{
+        color: green;
+    }
+}
+
+form > div > p {
+    color: red;
+    margin: 1.5em 0 0.6em 0 ;
+    width: 100%;
+    max-width: 20rem;
+    font-size: 0.9em;
+    line-height: 1.7em
+}
+
+.example-email {
+    display: block;
+}
+
+.email_part {
+    width: inherit;
+}
+
+.email_part > div > label{
+    margin-top: 0.9em;
+   
+    display: block;
+}
+
+.email_part > div > input {
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid black;
+    width: 100%;
+    outline: none;
+    margin-top: 0.9em;
+    padding: 0.7em;
+   
+    
+}
+
+.button-endelea {
+    margin: 2em 0 1em 0;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.button-endelea button {
+    padding: 0.6em 1em;
+    border: none;
+    background: green;
+    color: white;
+}
+
+section > img {
+   width: 5em;
+   margin-bottom: 0.4em;
+}
+
+
+
+
+/* mobile phone */
+@media screen and (width < 540px) {
+    .card-center {
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+    width: 100%;
+
+   
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+
+    overflow: hidden;
+}
+
+.card-center::before{
+    background: white
+}
+
+
+
+}

@@ -1,5 +1,8 @@
-import React, { useState, useReducer } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useReducer, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+
+// import Swal from "sweetalert2";
+import Swal from "sweetalert2";
 
 // images
 import group from "../../assets/group.png";
@@ -23,26 +26,30 @@ const reducer = (state, action) => {
     return {
       ...state,
       Loading: action.LoadType,
-    }; 
-  } 
+    };
+  }
 
   if (action.LoadType === false) {
     return {
       ...state,
       Loading: action.LoadType,
-    }; 
+    };
   }
   // Switch Type
-  if (action.type) {
-      return {
-        ...state,
-        email: action.payload,
-        password : action.payload
-      };
+  if (action.type === "SET_EMAIL") {
+    return {
+      ...state,
+      email: action.payload,
+    };
+  }
+  if (action.type === "SET_PASSWORD") {
+    return {
+      ...state,
+      password: action.payload,
+    };
   }
 };
 // ----------------
-
 
 export const Signup = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -51,11 +58,19 @@ export const Signup = () => {
   const [resOrTex, setResOrTex] = useState(false);
   const [emailExist, setEmailExist] = useState(false);
   const [messageServer, setMessageServer] = useState("");
-  const [proceedPassword, setProceedPassword] = useState (false) ;
+  const [proceedPassword, setProceedPassword] = useState(false);
+  const [buttonChoice, setButtonChoice] = useState(false);
+
+  //
+  const [accountCreated, setAccountCreated] = useState(false);
+  const [failCreatingAccount, setFailCreatingAccount] = useState(false);
 
   // ------------
 
-  const submit = async (e) => {
+  // use Navigate
+  const navigate = useNavigate();
+
+  const submitEmail = async (e) => {
     // prevent default
     e.preventDefault();
 
@@ -64,13 +79,19 @@ export const Signup = () => {
     });
 
     try {
-      // response
+      // response check email
       const response = await API.post("/auth-email", { email: state.email });
-      setProceedPassword (response.data.emailExist)
+      //
+      setProceedPassword(response.data.emailIsnotExist);
+      //
+      if (response.data.emailIsnotExist) {
+        const userID = localStorage.setItem("email", state.email);
+        setButtonChoice(true);
+      }
 
       setResOrTex(response.data.isMessageFromServer);
       setMessageServer(response.data.message);
-      setEmailExist(response.data.emailExist);
+      setEmailExist(response.data.emailIsnotExist);
 
       const remove_Bg_Message = () => {
         setResOrTex(false);
@@ -79,24 +100,100 @@ export const Signup = () => {
       setTimeout(remove_Bg_Message, 7000);
     } catch (error) {
       console.log(error);
-    }
-    finally {
+    } finally {
       dispatch({
-          LoadType: false,
-        });
+        LoadType: false,
+      });
+    }
+
+    //
+  };
+
+  const submitSignupFrom = async (e) => {
+    e.preventDefault();
+
+    dispatch({
+      LoadType: true,
+    });
+
+    try {
+      // signup
+      const signup = await API.post("/auth-signup", {
+        email: localStorage.getItem("email"),
+        password: state.password,
+      });
+
+      setAccountCreated(signup.data.isCreated);
+
+      if (signup.data.isCreated) {
+        const navigateTime = () => {
+          navigate("/signin");
+         
+        };
+        navigateTime()
+      }
+    } catch (err) {
+      console.log(err.response.data.creatingFailed);
+      setFailCreatingAccount(err.response.data.creatingFailed);
+
+      const time = () => {
+        setFailCreatingAccount(false);
+      };
+
+      setTimeout(time, 1000);
+    } finally {
+      dispatch({
+        LoadType: false,
+      });
     }
   };
+
+  const loginSuccess = () => {
+    Swal.fire({
+      position: "center",
+      icon: "success",
+      title: "Congratulation",
+      text: "Your account has been created successfully",
+      showConfirmButton: false,
+      timer: 5000,
+    });
+  };
+
+  const loginfailed = () => {
+    Swal.fire({
+      title: "Error",
+      text: "User alredy exist",
+      icon: "error",
+      draggable: false,
+    });
+  };
+
+  useEffect(() => {
+    if (accountCreated) {
+      loginSuccess();
+    }
+  }, [accountCreated]);
+
+  // fail to Create Account
+  useEffect(() => {
+    if (failCreatingAccount) {
+      loginfailed();
+    }
+  }, [failCreatingAccount]);
 
   return (
     <div className="card-center">
       <section>
-        <img src={group} alt="group" />
-        <h2>Fungua akaunti</h2>
-        <form onSubmit={submit}>
+        <div className="title_image"> 
+           <img src={group} alt="group" />
+        </div>
+       
+        <h2>TENGEZA ACCOUNT</h2>
+        <form onSubmit={buttonChoice ? submitSignupFrom : submitEmail}>
           {false ? (
             <div>
               {false ? (
-                <p style={{ color: "black" }} >
+                <p style={{ color: "black" }}>
                   Tafadhali andika neno la siri ili kuendelea
                 </p>
               ) : (
@@ -109,7 +206,7 @@ export const Signup = () => {
                 <p className="message_geServer_box">{messageServer}</p>
               ) : (
                 <p style={{ color: "black" }}>
-                  Fungua akaunti kwa kuandika email yako hapo chini
+                 Ingia ndani ya akaunti yako kwa kuandika email yako ndani ya chumba kilichopo hapo chini
                   <span className="example-email">exam573@gmail.com</span>
                 </p>
               )}
@@ -120,22 +217,22 @@ export const Signup = () => {
             {proceedPassword ? (
               <div>
                 <label htmlFor="email">Password : </label>
-                <input 
-                type="password" 
-                placeholder="* * * * * * * * * * * * *"
-                required
-                value={state.password}
-                onChange={(e) => {
-                  dispatch({
-                    payload : e.target.value,
-                    type : "SET_PASSWORD"
-                  })
-                }}
-                 />
+                <input
+                  type="text"
+                  placeholder="* * * * * * * * * * * * *"
+                  required
+                  value={state.password}
+                  onChange={(e) => {
+                    dispatch({
+                      payload: e.target.value,
+                      type: "SET_PASSWORD",
+                    });
+                  }}
+                />
               </div>
             ) : (
               <div>
-                <label htmlFor="email">Email : </label>
+                <label htmlFor="email"> Email address </label>
                 <input
                   type="email"
                   placeholder="exam573@gmail.com"
@@ -152,21 +249,25 @@ export const Signup = () => {
             )}
           </div>
 
+          <div className="confirm_detail">
+            <p>Tafadhali hakikisha taarifa ulizo ziandika kwa umakini kisha endelea </p>
+          </div>
+
           <div className="button-endelea">
             {state.Loading ? (
               <div className="proceeding-loader">
                 <Loader /> <span>Proceeding...</span>
               </div>
             ) : (
-              <button>Endelea</button>
+              <button>{true ? "Endelea":"Endelea"}</button>
             )}
           </div>
 
           {state.Loading ? null : (
-            <p style={{ color: "black",fontSize:"small" }}>
+            <p style={{ color: "black", fontSize: "small" }}>
               Sina akaunti.&nbsp;
               <Link to="/signin">
-                <span style={{ color: "blue", textDecoration: "none",  }}>
+                <span style={{ color: "blue", textDecoration: "none" }}>
                   Tengeza akaunti !
                 </span>
               </Link>

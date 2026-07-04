@@ -1,0 +1,39 @@
+.place_loader_center {
+  height: 80dvh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loading_text {
+  margin-top: 1.3em;
+}
+
+.center_PreLoading {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: white;
+ padding: 1.9em 0.9em;
+  border-radius: 12px;
+}
+
+
+.notification_control {
+    display: none;
+  }
+
+/* Mobile view */
+@media (width < 450px) {
+  .notification {
+    background-color: white;
+    color: black;
+    width: 100%;
+  }
+
+  
+
+ 
+
+}

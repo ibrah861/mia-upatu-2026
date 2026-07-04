@@ -26,10 +26,13 @@ return (
         </Link>
        
        </div>
-      
+       
      </section>
 
      <section className="flex-pesa">
+      <Link to="/signup">
+       Go to Sign up
+      </Link>
      </section>
     </>
   )

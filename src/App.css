@@ -1,5 +1,15 @@
+html {
+   min-height: 100dvh;
+}
+
 body {
-  font-family:"Roboto", 'Arial', sans-serif;
+  font-family:"Roboto", "monospace",'Arial', sans-serif;
+  min-height: inherit;
+  /* padding: 0.3em 0.6em; */
+}
+
+#root {
+  min-height: inherit;
 }
 
 * {
@@ -9,10 +19,10 @@ body {
 }
 
 h1,h2,h3,h4 {
-  font-weight: 400;
-}
+  font-weight: 800;
+}b
 
-p {
-  font-weight: 300;
+p , a{
+  font-weight: 200;
 }
 

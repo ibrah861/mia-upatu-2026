@@ -80,9 +80,12 @@ export const Signin = () => {
         password: state.password,
       });
 
-      console.log(signin)
+      console.log(signin);
 
-      const user_token = localStorage.setItem("user_token", signin?.data?.token)
+      const user_token = localStorage.setItem(
+        "user_token",
+        signin?.data?.token,
+      );
 
       setSuccess(signin?.data?.message);
 
@@ -90,7 +93,7 @@ export const Signin = () => {
         const navigateTime = () => {
           navigate(`/activation/${signin?.data?.user?._id}`);
         };
-        navigateTime()
+        navigateTime();
       }
 
       const time = () => {
@@ -102,10 +105,10 @@ export const Signin = () => {
       setFailLogint(err?.response?.data?.message);
 
       const time = () => {
-        setFailLogint(false)
-      }  
+        setFailLogint(false);
+      };
 
-      setTimeout(time, 1000)
+      setTimeout(time, 1000);
     } finally {
       dispatch({
         LoadType: false,
@@ -149,74 +152,79 @@ export const Signin = () => {
   }, [failLogin]);
 
   return (
-    <div className="card-center">
-      <section>
-        <div className="title_image">
-          <img src={group} alt="group" />
-        </div>
-        
-        <h2>INGIA NDANI</h2>
-        <form onSubmit={submitSignupFrom}>
-          <p>
-            Ingia ndani ya akaunti yako kwa kuandika userID yako pamoja nelo la
-            siri
-          </p>
-          <div className="email_part">
-            <div>
-              <label htmlFor="email">Email : </label>
-              <input
-                type="email"
-                placeholder="exam573@gmail.com"
-                required
-                value={state.email}
-                onChange={(e) => {
-                  dispatch({
-                    payload: e.target.value,
-                    type: "SET_EMAIL",
-                  });
-                }}
-              />
-            </div>
-
-            <div>
-              <label htmlFor="email">Password : </label>
-              <input
-                type="text"
-                placeholder="* * * * * * * * * * * * *"
-                required
-                value={state.password}
-                onChange={(e) => {
-                  dispatch({
-                    payload: e.target.value,
-                    type: "SET_PASSWORD",
-                  });
-                }}
-              />
-            </div>
+    <>
+      <div className="card-center">
+        <section>
+          <div className="title_image">
+            <img src={group} alt="group" />
           </div>
 
-          <div className="button-endelea">
-            {state.Loading ? (
-              <div className="proceeding-loader">
-                <Loader /> <span>Proceeding...</span>
-              </div>
-            ) : (
-              <button>{true ? "Tengeneza" : "Endelea"}</button>
-            )}
-          </div>
-
-          {state.Loading ? null : (
-            <p style={{ color: "black", fontSize: "small" }}>
-              Sina akaunti.&nbsp;
-              <Link to="/signup">
-                <span style={{ color: "blue", textDecoration: "none" }}>
-                  Tengeza akaunti !
-                </span>
-              </Link>
+          <h2>INGIA NDANI</h2>
+          <form onSubmit={submitSignupFrom}>
+            <p>
+              Ingia ndani ya akaunti yako kwa kuandika userID yako pamoja nelo
+              la siri
             </p>
-          )}
-        </form>
-      </section>
-    </div>
+            <div className="email_part">
+              <div>
+                <label htmlFor="email">Email : </label>
+                <input
+                  type="email"
+                  placeholder="exam573@gmail.com"
+                  required
+                  value={state.email}
+                  onChange={(e) => {
+                    dispatch({
+                      payload: e.target.value,
+                      type: "SET_EMAIL",
+                    });
+                  }}
+                />
+              </div>
+
+              <div>
+                <label htmlFor="email">Password : </label>
+                <input
+                  type="text"
+                  placeholder="* * * * * * * * * * * * *"
+                  required
+                  value={state.password}
+                  onChange={(e) => {
+                    dispatch({
+                      payload: e.target.value,
+                      type: "SET_PASSWORD",
+                    });
+                  }}
+                />
+              </div>
+            </div>
+
+            <div className="button-endelea">
+              {state.Loading ? (
+                <div className="proceeding-loader">
+                  <Loader /> <span>Proceeding...</span>
+                </div>
+              ) : (
+                <button>{true ? "Tengeneza" : "Endelea"}</button>
+              )}
+            </div>
+
+            {state.Loading ? null : (
+              <p style={{ color: "black", fontSize: "small" }}>
+                Sina akaunti.&nbsp;
+                <Link to="/signup">
+                  <span style={{ color: "blue", textDecoration: "none" }}>
+                    Tengeza akaunti !
+                  </span>
+                </Link>
+              </p>
+            )}
+          </form>
+        </section>
+      </div>
+      <div className="image_box_frame">
+        <div className="image_frame"></div>
+      </div>
+    </>
   );
 };

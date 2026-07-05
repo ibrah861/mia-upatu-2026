@@ -128,9 +128,8 @@ export const Signup = () => {
       if (signup.data.isCreated) {
         const navigateTime = () => {
           navigate("/signin");
-         
         };
-        navigateTime()
+        navigateTime();
       }
     } catch (err) {
       console.log(err.response.data.creatingFailed);
@@ -182,99 +181,109 @@ export const Signup = () => {
   }, [failCreatingAccount]);
 
   return (
-    <div className="card-center">
-      <section>
-        <div className="title_image"> 
-           <img src={group} alt="group" />
-        </div>
-       
-        <h2>TENGEZA ACCOUNT</h2>
-        <form onSubmit={buttonChoice ? submitSignupFrom : submitEmail}>
-          {false ? (
-            <div>
-              {false ? (
-                <p style={{ color: "black" }}>
-                  Tafadhali andika neno la siri ili kuendelea
-                </p>
-              ) : (
-                <p>Error : Either username or password is incorrect</p>
-              )}
-            </div>
-          ) : (
-            <div>
-              {resOrTex ? (
-                <p className="message_geServer_box">{messageServer}</p>
-              ) : (
-                <p style={{ color: "black" }}>
-                 Ingia ndani ya akaunti yako kwa kuandika email yako ndani ya chumba kilichopo hapo chini
-                  <span className="example-email">exam573@gmail.com</span>
-                </p>
-              )}
-            </div>
-          )}
+    <>
+      <div className="card-center">
+        <section>
+          <div className="title_image">
+            <img src={group} alt="group" />
+          </div>
 
-          <div className="email_part">
-            {proceedPassword ? (
+          <h2>TENGEZA ACCOUNT</h2>
+          <form onSubmit={buttonChoice ? submitSignupFrom : submitEmail}>
+            {false ? (
               <div>
-                <label htmlFor="email">Password : </label>
-                <input
-                  type="text"
-                  placeholder="* * * * * * * * * * * * *"
-                  required
-                  value={state.password}
-                  onChange={(e) => {
-                    dispatch({
-                      payload: e.target.value,
-                      type: "SET_PASSWORD",
-                    });
-                  }}
-                />
+                {false ? (
+                  <p style={{ color: "black" }}>
+                    Tafadhali andika neno la siri ili kuendelea
+                  </p>
+                ) : (
+                  <p>Error : Either username or password is incorrect</p>
+                )}
               </div>
             ) : (
               <div>
-                <label htmlFor="email"> Email address </label>
-                <input
-                  type="email"
-                  placeholder="exam573@gmail.com"
-                  required
-                  value={state.email}
-                  onChange={(e) => {
-                    dispatch({
-                      payload: e.target.value,
-                      type: "SET_EMAIL",
-                    });
-                  }}
-                />
+                {resOrTex ? (
+                  <p className="message_geServer_box">{messageServer}</p>
+                ) : (
+                  <p style={{ color: "black" }}>
+                    Ingia ndani ya akaunti yako kwa kuandika email yako ndani ya
+                    chumba kilichopo hapo chini
+                    <span className="example-email">exam573@gmail.com</span>
+                  </p>
+                )}
               </div>
             )}
-          </div>
 
-          <div className="confirm_detail">
-            <p>Tafadhali hakikisha taarifa ulizo ziandika kwa umakini kisha endelea </p>
-          </div>
+            <div className="email_part">
+              {proceedPassword ? (
+                <div>
+                  <label htmlFor="email">Password : </label>
+                  <input
+                    type="text"
+                    placeholder="* * * * * * * * * * * * *"
+                    required
+                    value={state.password}
+                    onChange={(e) => {
+                      dispatch({
+                        payload: e.target.value,
+                        type: "SET_PASSWORD",
+                      });
+                    }}
+                  />
+                </div>
+              ) : (
+                <div>
+                  <label htmlFor="email"> Email address </label>
+                  <input
+                    type="email"
+                    placeholder="exam573@gmail.com"
+                    required
+                    value={state.email}
+                    onChange={(e) => {
+                      dispatch({
+                        payload: e.target.value,
+                        type: "SET_EMAIL",
+                      });
+                    }}
+                  />
+                </div>
+              )}
+            </div>
 
-          <div className="button-endelea">
-            {state.Loading ? (
-              <div className="proceeding-loader">
-                <Loader /> <span>Proceeding...</span>
-              </div>
-            ) : (
-              <button>{true ? "Endelea":"Endelea"}</button>
+            <div className="confirm_detail">
+              <p>
+                Tafadhali hakikisha taarifa ulizo ziandika kwa umakini kisha
+                endelea{" "}
+              </p>
+            </div>
+
+            <div className="button-endelea">
+              {state.Loading ? (
+                <div className="proceeding-loader">
+                  <Loader /> <span>Proceeding...</span>
+                </div>
+              ) : (
+                <button>{true ? "Endelea" : "Endelea"}</button>
+              )}
+            </div>
+
+            {state.Loading ? null : (
+              <p style={{ color: "black", fontSize: "small" }}>
+                Sina akaunti.&nbsp;
+                <Link to="/signin">
+                  <span style={{ color: "blue", textDecoration: "none" }}>
+                    Tengeza akaunti !
+                  </span>
+                </Link>
+              </p>
             )}
-          </div>
+          </form>
+        </section>
+      </div>
 
-          {state.Loading ? null : (
-            <p style={{ color: "black", fontSize: "small" }}>
-              Sina akaunti.&nbsp;
-              <Link to="/signin">
-                <span style={{ color: "blue", textDecoration: "none" }}>
-                  Tengeza akaunti !
-                </span>
-              </Link>
-            </p>
-          )}
-        </form>
-      </section>
-    </div>
+      <div className="image_box_frame">
+        <div className="image_frame"></div>
+      </div>
+    </>
   );
 };

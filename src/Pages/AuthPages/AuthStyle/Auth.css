@@ -185,6 +185,13 @@ section > div > img {
   animation: image_animation 800ms ease-in-out 300ms infinite alternate;
 }
 
+.image_frame > img {
+  width: inherit;
+  height: inherit;
+  object-fit: cover;
+  display: block;
+}
+
 @keyframes image_animation {
   0% {
     background: rgba(0, 0, 0, 0.125);
@@ -196,6 +203,7 @@ section > div > img {
 }
 
 .image_box_frame {
+  display: none;
   height: 16em;
   width: 100%;
   max-width: 21em;
@@ -219,5 +227,9 @@ section > div > img {
 
   .card-center::before {
     background: white;
+  }
+
+  .image_box_frame {
+    display: block;
   }
 }

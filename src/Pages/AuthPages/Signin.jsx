@@ -7,6 +7,9 @@ import Swal from "sweetalert2";
 // images
 import group from "../../assets/group.png";
 
+// images from json file
+import userImages from "../../../public/data/images.json";
+
 // auth
 import { API } from "../../App_Connection/Connection";
 
@@ -223,7 +226,11 @@ export const Signin = () => {
         </section>
       </div>
       <div className="image_box_frame">
-        <div className="image_frame"></div>
+        <div className="image_frame">
+          {userImages.map((image, index) => (
+            <img src={image} alt="youth_leader" key={index} loading="lazy" />
+          ))}
+        </div>
       </div>
     </>
   );

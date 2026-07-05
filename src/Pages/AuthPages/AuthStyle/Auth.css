@@ -39,7 +39,7 @@
 
 form {
   margin-top: 0.8em;
-} 
+}
 
 form > div > p {
   color: red;
@@ -69,14 +69,13 @@ form > div > p {
 }
 
 .email_part > div > input {
-
   width: 100%;
   outline: none;
   margin-top: 0.4em;
   padding: 0.7em;
 }
 
-.confirm_detail > p{
+.confirm_detail > p {
   color: blue;
   font-size: small;
   font-weight: 500;
@@ -88,7 +87,7 @@ form > div > p {
   justify-content: flex-end;
   align-items: center;
   background: white;
-  padding: 0.4em 0.8em ;
+  padding: 0.4em 0.8em;
   width: 100%;
   border-radius: 0.2em;
 }
@@ -115,7 +114,6 @@ section > div > img {
   width: 6em;
   margin-bottom: 0.4em;
   margin-bottom: 0.6em;
-
 }
 
 .message_geServer_box {
@@ -129,12 +127,10 @@ section > div > img {
   display: flex;
   justify-content: center;
   align-items: center;
-
- 
 }
 
 .bg-cl {
- min-height: inherit;
+  min-height: inherit;
   background: black;
   color: white;
 }
@@ -190,17 +186,20 @@ section > div > img {
 }
 
 @keyframes image_animation {
- 0% {
- background: rgba(0, 0, 0, 0.24);
- }
+  0% {
+    background: rgba(0, 0, 0, 0.125);
+  }
 
- 100% {
-  background:rgba(0, 0, 0, 0.114);
- }
+  100% {
+    background: rgba(0, 0, 0, 0.021);
+  }
 }
 
 .image_box_frame {
   height: 16em;
+  width: 100%;
+  max-width: 21em;
+  margin: 2em auto 0 auto;
 }
 
 /* mobile phone */
@@ -215,13 +214,10 @@ section > div > img {
 
   .card-center > section {
     display: block;
-      padding: 0;
-   
+    padding: 0;
   }
 
   .card-center::before {
     background: white;
-  
   }
-  
 }

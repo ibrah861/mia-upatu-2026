@@ -157,7 +157,7 @@ export const Signin = () => {
   return (
     <>
       <div className="card-center">
-        <section>
+        <section className="form-content">
           <div className="title_image">
             <img src={group} alt="group" />
           </div>
@@ -208,7 +208,7 @@ export const Signin = () => {
                   <Loader /> <span>Proceeding...</span>
                 </div>
               ) : (
-                <button>{true ? "Tengeneza" : "Endelea"}</button>
+                <button className="submit-button">{true ? "Tengeneza" : "Endelea"}</button>
               )}
             </div>
 

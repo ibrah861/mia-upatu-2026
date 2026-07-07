@@ -186,7 +186,7 @@ export const Signup = () => {
   return (
     <>
       <div className="card-center">
-        <section>
+        <section className="form-content">
           <div className="title_image">
             <img src={group} alt="group" />
           </div>
@@ -266,7 +266,7 @@ export const Signup = () => {
                   <Loader /> <span>Proceeding...</span>
                 </div>
               ) : (
-                <button>{true ? "Endelea" : "Endelea"}</button>
+                <button className="submit-button">{true ? "Endelea" : "Endelea"}</button>
               )}
             </div>
 

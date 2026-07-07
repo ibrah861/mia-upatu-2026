@@ -8,7 +8,7 @@ import Swal from "sweetalert2";
 import group from "../../assets/group.png";
 
 // images for src/ assets
-import image from "../../assets/kiongozi wavijana.jpg"
+import image from "../../assets/kiongozi wavijana.jpg";
 
 // auth
 import { API } from "../../App_Connection/Connection";
@@ -162,12 +162,13 @@ export const Signin = () => {
             <img src={group} alt="group" />
           </div>
 
-          <h2>INGIA NDANI</h2>
+          <h2>Login</h2>
           <form onSubmit={submitSignupFrom}>
             <p>
-              Ingia ndani ya akaunti yako kwa kuandika userID yako pamoja nelo
-              la siri
+              Login into your account by using your valid registred email
+              address.
             </p>
+           
             <div className="email_part">
               <div>
                 <label htmlFor="email">Email : </label>
@@ -202,22 +203,33 @@ export const Signin = () => {
               </div>
             </div>
 
+            <br/>
+
+             <p>
+              <span style={{color:"blue" }}>
+                <b>Before submition:</b> &nbsp;
+              </span>
+              Please ensure both email address and password are vaild
+            </p>
+
             <div className="button-endelea">
               {state.Loading ? (
                 <div className="proceeding-loader">
                   <Loader /> <span>Proceeding...</span>
                 </div>
               ) : (
-                <button className="submit-button">{true ? "Tengeneza" : "Endelea"}</button>
+                <button className="submit-button">
+                  {true ? "Proceed" : "Submit"}
+                </button>
               )}
             </div>
 
             {state.Loading ? null : (
               <p style={{ color: "black", fontSize: "small" }}>
-                Sina akaunti.&nbsp;
+                I don't have account.&nbsp;
                 <Link to="/signup">
                   <span style={{ color: "blue", textDecoration: "none" }}>
-                    Tengeza akaunti !
+                 < b> create </b>
                   </span>
                 </Link>
               </p>
@@ -225,11 +237,11 @@ export const Signin = () => {
           </form>
         </section>
       </div>
-     <div className="image_box_frame">
-             <div className="image_frame">
-              <img src={image} alt="" />
-             </div>
-           </div>
+      <div className="image_box_frame">
+        <div className="image_frame">
+          <img src={image} alt="" />
+        </div>
+      </div>
     </>
   );
 };

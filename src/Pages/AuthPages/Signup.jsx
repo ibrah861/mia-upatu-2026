@@ -14,7 +14,7 @@ import { API } from "../../App_Connection/Connection";
 import { Loader } from "../../Loader/Loader";
 
 // images for src/ assets
-import image from "../../assets/kiongozi wavijana.jpg"
+import image from "../../assets/kiongozi wavijana.jpg";
 
 const initialState = {
   // input value
@@ -191,7 +191,7 @@ export const Signup = () => {
             <img src={group} alt="group" />
           </div>
 
-          <h2>TENGEZA ACCOUNT</h2>
+          <h2>Create Account</h2>
           <form onSubmit={buttonChoice ? submitSignupFrom : submitEmail}>
             {false ? (
               <div>
@@ -208,11 +208,16 @@ export const Signup = () => {
                 {resOrTex ? (
                   <p className="message_geServer_box">{messageServer}</p>
                 ) : (
-                  <p style={{ color: "black" }}>
-                    Ingia ndani ya akaunti yako kwa kuandika email yako ndani ya
-                    chumba kilichopo hapo chini
-                    <span className="example-email">exam573@gmail.com</span>
-                  </p>
+                  <>
+                    <p style={{ color: "black" }}>
+                      Now you can create your new account by filling up bellow
+                      email address box
+                      <span className="example-email">exam573@gmail.com</span>
+                    </p>
+                    <p style={{ color: "black" }}>
+                      Please use your valid email while you create new acount
+                    </p>
+                  </>
                 )}
               </div>
             )}
@@ -255,8 +260,10 @@ export const Signup = () => {
 
             <div className="confirm_detail">
               <p>
-                Tafadhali hakikisha taarifa ulizo ziandika kwa umakini kisha
-                endelea{" "}
+                <b>Before submition:</b> &nbsp;
+                <span style={{ color: "black" }}>
+                  Please ensure your email address is valid
+                </span>
               </p>
             </div>
 
@@ -266,16 +273,18 @@ export const Signup = () => {
                   <Loader /> <span>Proceeding...</span>
                 </div>
               ) : (
-                <button className="submit-button">{true ? "Endelea" : "Endelea"}</button>
+                <button className="submit-button">
+                  {true ? "Proceed" : "Submit"}
+                </button>
               )}
             </div>
 
             {state.Loading ? null : (
               <p style={{ color: "black", fontSize: "small" }}>
-                Sina akaunti.&nbsp;
+                I have account alredy.&nbsp;
                 <Link to="/signin">
                   <span style={{ color: "blue", textDecoration: "none" }}>
-                    Tengeza akaunti !
+                  <b> sign in </b>
                   </span>
                 </Link>
               </p>
@@ -286,7 +295,7 @@ export const Signup = () => {
 
       <div className="image_box_frame">
         <div className="image_frame">
-         <img src={image} alt="" />
+          <img src={image} alt="" />
         </div>
       </div>
     </>

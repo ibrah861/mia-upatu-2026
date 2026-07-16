@@ -242,7 +242,7 @@ export const Signin = () => {
          <div className="images-container">
           <h2> <span className="red-cl"> 
             You are ready to sign in <br/>
-            </span> your new account is ready</h2>
+            </span> account activated</h2>
           <img src={manwithlaptop} alt="man-with-laptop" />
          </div>
 

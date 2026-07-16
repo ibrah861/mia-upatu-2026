@@ -6,6 +6,7 @@ import Swal from "sweetalert2";
 
 // images
 import group from "../../assets/group.png";
+import manwithlaptop from "../../assets/man-with-laptop.png"
 
 // auth
 import { API } from "../../App_Connection/Connection";
@@ -291,6 +292,21 @@ export const Signup = () => {
             )}
           </form>
         </section>
+
+       <div>
+         <div className="images-container">
+          <h2> <span className="red-cl"> 
+            You are ready to create <br/>
+            </span> your new account now</h2>
+          <img src={manwithlaptop} alt="man-with-laptop" />
+         </div>
+
+         <div className="footer-class">
+          <h5>Note:-</h5>
+          <p>Before creating account ensure your email address is valid</p>
+          <p>Your email address is import for us.</p>
+         </div>
+       </div>
       </div>
 
       <div className="image_box_frame">

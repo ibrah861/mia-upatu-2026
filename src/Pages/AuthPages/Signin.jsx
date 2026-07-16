@@ -9,6 +9,7 @@ import group from "../../assets/group.png";
 
 // images for src/ assets
 import image from "../../assets/kiongozi wavijana.jpg";
+import manwithlaptop from "../../assets/man-with-laptop.png"
 
 // auth
 import { API } from "../../App_Connection/Connection";
@@ -236,7 +237,23 @@ export const Signin = () => {
             )}
           </form>
         </section>
+
+ <div>
+         <div className="images-container">
+          <h2> <span className="red-cl"> 
+            You are ready to sign in <br/>
+            </span> your new account is ready</h2>
+          <img src={manwithlaptop} alt="man-with-laptop" />
+         </div>
+
+         <div className="footer-class">
+          <h5>Note:-</h5>
+          <p>Your email address will be used for system purpose.</p>
+         </div>
+       </div>
+        
       </div>
+
       <div className="image_box_frame">
         <div className="image_frame">
           <img src={image} alt="" />
